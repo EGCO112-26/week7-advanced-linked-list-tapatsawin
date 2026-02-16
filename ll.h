@@ -1,5 +1,9 @@
+#ifndef LL_H
+#define LL_H
+
 #include <string.h>
-#include <stdlib.h> // ต้องมีเพื่อใช้ malloc, free
+#include <stdlib.h>
+#include <stdio.h>
 
 // structure definition
 struct Node {
@@ -113,7 +117,7 @@ int isEmpty( LLPtr sPtr )
    return sPtr == NULL;
 } 
 
-// print the list (ปรับรูปแบบตามรูปภาพตัวอย่าง)
+// print the list
 void printList( LLPtr currentPtr )
 {
    if ( isEmpty( currentPtr ) ) {
@@ -122,24 +126,24 @@ void printList( LLPtr currentPtr )
    else {
       puts( "The list is:" );
 
-      LLPtr lastPtr = NULL; // เก็บตัวสุดท้ายไว้ print ย้อนกลับ
+      LLPtr lastPtr = NULL; 
 
       // Forward Loop
       while ( currentPtr != NULL ) {
          printf( "%d %s --> ", currentPtr->id, currentPtr->name );
-         if (currentPtr->nextPtr == NULL) lastPtr = currentPtr; // หาหาง
+         if (currentPtr->nextPtr == NULL) lastPtr = currentPtr; 
          currentPtr = currentPtr->nextPtr;
       } 
-      puts( "NULL" );
+      puts( "NULL" ); // newline automatically added by puts
        
       // Backward Loop
       while ( lastPtr != NULL ) {
          printf( "%d %s --> ", lastPtr->id, lastPtr->name );
          lastPtr = lastPtr->pPtr;
       } 
-      puts( "NULL\n" );
+      puts( "NULL" ); // แก้ไข: ลบ \n ออก เพราะ puts ใส่ให้อยู่แล้ว
    } 
-} // วงเล็บปิดที่เคยหายไป ใส่ครบแล้วครับ
+}
 
 void clearList( LLPtr *sPtr )
 {
@@ -147,7 +151,9 @@ void clearList( LLPtr *sPtr )
     while (*sPtr != NULL) {
         tempPtr = *sPtr;
         *sPtr = (*sPtr)->nextPtr;
-        printf("delete %d\n", tempPtr->id); 
+        printf("delete %d\n", tempPtr->id);
         free(tempPtr);
     }
 }
+
+#endif
