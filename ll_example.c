@@ -20,10 +20,8 @@ int main( void )
 
       switch ( choice ) { 
          case 1:
-            printf( "%s", "Enter a number: " );
-            scanf( "%d", &item );
-            printf( "%s", "Enter name: " );
-            scanf( "%s", name );
+            printf( "%s", "Enter id and name: " );
+            scanf( "%d %s", &item, name );
             insert( &startPtr, item, name ); // insert item in list
             printList( startPtr );
             break;
@@ -43,12 +41,12 @@ int main( void )
                } // end else
             } // end if
             else {
-               puts( "List is empty.\n" );
+               puts( "List is empty." );
             } // end else
 
             break;
          default:
-            puts( "Invalid choice.\n" );
+            puts( "Invalid choice." );
             instructions();
             break;
       } // end switch
@@ -57,7 +55,8 @@ int main( void )
       scanf( "%u", &choice );
    } // end while
   /* Clear all nodes at the end of nodes*/
+   puts( "Clear all nodes" );
    clearList(&startPtr);
    puts( "End of run." );
-   // end main
-}
+   return 0;
+} // end main
